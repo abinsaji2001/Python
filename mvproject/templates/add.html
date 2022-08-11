@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+<html>
+<head>
+    <title>MOVIE_SITE</title>
+</head>
+<body>
+{% block body %}
+<h1 style="color:red; text-align:center;">MOVIE DETAILS</h1>
+<form method="post" style="text-align:center" enctype="multipart/form-data">
+    {% csrf_token %}
+    <label>MOVIE</label><br>
+    <input type="text" name="name" placeholder="moviename"><br><br>
+    <label>IMAGE</label><br>
+    <input type="file" name="img" placeholder="image"><br><br>
+    <label>DESCRIPTION</label><br>
+    <input type="text" name="desc" placeholder="description"><br><br>
+     <label>YEAR</label><br>
+    <input type="text" name="year" placeholder="year"><br><br>
+    <input type="submit" style="color:white; background-color:black;">
+</form>
+{% endblock %}
+</body>
+</html>
