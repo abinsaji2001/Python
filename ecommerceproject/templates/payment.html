@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block metadescription %}
+This is the cart page.Proceed to review your items and place the order.
+{% endblock %}
+{% block title %}
+    Cart - E-Cart Company PVT LTD-->
+{% endblock %}
+{% block content %}
+</head>
+<h4 style="color:blue; text-align:center;"><u>PAYMENT RECEIPT</u></h4>
+<form  method="post" style="text-align:center">
+    {% csrf_token %}
+    <h5>NAME</h5>
+    <input type="text" name="first_name" placeholder="firstname">
+    <input type="text" name="last_name" placeholder="lastname"><br><br>
+     <h5>ADDRESS</h5>
+    <input type="text" name="Street Adress" placeholder="Street Address">
+    <input type="text" name="Street Address Line 2" placeholder="Street Address Line 2"><br><br>
+    <input type="text" name="City" placeholder="City">
+    <input type="text" name="State" placeholder="State"><br><br>
+    <input type="text" name="PinCode" placeholder="PinCode"><br><br>
+    <h5>PAYMENT METHOD</h5>
+     <input type="radio" id="html" name="fav_language" value="HTML">
+ <label for="html"> Card </label><br>
+<input type="radio" id="javascript" name="fav_language" value="JavaScript">
+ <label for="javascript"> Cash </label><br><br>
+    </form>
+
+<div class="text-center">
+     <h6>TOTAL PRICE : <strong> ₹ {{ total }}</strong> </h6>
+    <a href="{% url 'cart:success' %}" class="btn btn-danger btn-block my_custom_button">Pay</a></P>
+</div>
+{% endblock %}
+
+
+

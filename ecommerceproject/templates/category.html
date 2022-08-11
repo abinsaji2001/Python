@@ -1,0 +1,88 @@
+{% extends 'base.html'%}
+{% load static %}
+{% block metadescription %}
+    {% if category %}
+        {{category.description|truncatewords:155}}
+    {% else %}
+        Welcome to E-Cart where you can buys different items.....
+    {% endif %}
+{% endblock %}
+{% block title %}
+     {% if category  %}
+        {{category.name}} - E-Cart
+    {% else %}
+      See our New Collections - E-Cart
+    {% endif %}
+{% endblock %}
+{% block content %}
+{% if category %}
+<div>
+    <div class="row my_row_class">
+        <div class="mx_auto">
+        <p><a href="{% url 'shop:allProdCat' %}">Our Product Collections</a></p>
+    </div>
+        </div>
+</div>
+ {% endif %}
+<div class="mx_auto">
+    {% if category %}
+    <img class="my_image" src="{{category.image.url}}" alt="{{category.image}}">
+</div>
+<br>
+<div>
+    <h1 class="text-center my_title">{{category.name}}</h1>
+    <p class="text-justify">{{category.description}}</p>
+
+</div>
+    {% else %}
+<div>
+
+    <img  class="my_image my_image_padding" src="{% static 'img/navbar1.png' %}"  alt="Our Products" height="300px;" width="2100px;">
+</div>
+<br>
+<div>
+    <h1 class="text-center my_title">Our Products collections</h1>
+    <p class="text-justify"><b>Online shopping is a form of electronic commerce
+        which allows consumers to directly buy goods or services from a seller
+        over the Internet using a web browser or a mobile app.Our product
+       designed for the jet-setter in mind, our shirt is the ideal blend of
+        comfort and style. Built for the man who’s in demand, this classic
+        design will keep you looking presentable on the go, with a gentle
+        fabric for all-day comfort. Because you won’t perform at your best
+        if you’re irritated by your clothing. Our shirt is a sleek take on
+        a well-loved classic featuring a tried-and-tested spread collar and
+        a slim fit styling.</b></p>
+</div>
+    {% endif %}
+<div class="container">
+    <div class="row">
+        {% for product in products.object_list %}
+        <div class="my_bottom_margin col-9 col-sm-12 col-md-4 col-lg-4">
+            <div class="card text-center" style="min-width:18rem;">
+                <a href="{{product.get_url}}"><img class="card-img-top my_image" src="{{product.image.url}}"
+                alt="{{product.name}}"></a>
+                <div class="card-body">
+                    <h4>{{product.name}}</h4>
+                    <p>₹ {{product.price}}</p>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    <div class="mx-auto">
+        {% if products.paginator.num_pages > 1 %}
+
+        <hr>
+        <div class="text-center">
+            {% for pg in products.paginator.page_range %}
+                <a href="?page={{pg}}" class="btn btn-light btn-sm {% if products.number == pg %} active {% endif %}">{{pg}}</a>
+            {% endfor %}
+        </div>
+        {% endif %}
+    </div>
+    <br>
+</div>
+{% endblock %}
+
+
+
