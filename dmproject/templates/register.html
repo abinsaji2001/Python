@@ -1,0 +1,36 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>REGISTERATION</title>
+    <style>
+      label,h2
+        {
+        color:white;
+        }
+ </style>
+</head>
+<body style="background-image:url({% static 'images/img12.jpg' %});">
+<h1 style="color:red; text-align:center;">REGISTER</h1>
+<form action="register" method="post" style="text-align:center">
+    {% csrf_token %}
+    <label>USERNAME</label><br>
+    <input type="text" name="name" placeholder="Username"><br><br>
+    <label>FIRST_NAME</label><br>
+    <input type="text" name="first_name" placeholder="firstname"><br><br>
+    <label>LAST_NAME</label><br>
+    <input type="text" name="last_name" placeholder="lastname"><br><br>
+     <label>EMAIL</label><br>
+    <input type="email" name="email" placeholder="email"><br><br>
+    <label>PASSWORD</label><br>
+    <input type="password" name="password" placeholder="password"><br><br>
+    <label>CONFIRM_PASSWORD</label><br>
+    <input type="password" name="password1" placeholder="confirm password"><br><br>
+    <input type="submit" style="color:white; background-color:black;">
+    <form>
+        {% for msg in messages %}
+        <h2>{{msg}}<h2>
+            {% endfor %}
+</body>
+</html>
